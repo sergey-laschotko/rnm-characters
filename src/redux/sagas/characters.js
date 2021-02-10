@@ -39,7 +39,11 @@ function* getCharacterWorker({ payload }) {
   try {
     const data = yield call(loadCharacter, payload);
 
-    yield put({ type: FETCH_CURRENT_CHARACTER_SUCCESS, payload: data });
+    if (data.error) {
+      yield put({ type: FETCH_CURRENT_CHARACTER_FAIL });
+    } else {
+      yield put({ type: FETCH_CURRENT_CHARACTER_SUCCESS, payload: data });
+    }
   } catch (e) {
     yield put({ type: FETCH_CURRENT_CHARACTER_FAIL });
   }

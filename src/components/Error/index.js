@@ -1,5 +1,5 @@
 import React from 'react';
-import { element } from 'prop-types';
+import { oneOfType, element, string } from 'prop-types';
 
 import { ErrorContainer } from './styles';
 
@@ -10,7 +10,7 @@ const Error = ({ children }) => (
 );
 
 Error.propTypes = {
-  children: element.isRequired
+  children: oneOfType([element, string]).isRequired
 };
 
 export default Error;
