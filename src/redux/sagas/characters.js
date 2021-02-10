@@ -3,9 +3,9 @@ import {
   FETCH_CHARACTERS,
   FETCH_CHARACTERS_SUCCESS,
   FETCH_CHARACTERS_FAIL,
-  FETCH_CHARACTER,
-  FETCH_CHARACTER_SUCCESS,
-  FETCH_CHARACTER_FAIL
+  FETCH_CURRENT_CHARACTER,
+  FETCH_CURRENT_CHARACTER_SUCCESS,
+  FETCH_CURRENT_CHARACTER_FAIL
 } from '../types';
 import { fetchCharacters, fetchCharacter } from '../../api';
 
@@ -30,7 +30,6 @@ export function* getCharactersWatcher() {
 }
 
 async function loadCharacter(id) {
-  console.log('id', id);
   const response = await fetchCharacter(id);
 
   return await response.json();
@@ -40,12 +39,12 @@ function* getCharacterWorker({ payload }) {
   try {
     const data = yield call(loadCharacter, payload);
 
-    yield put({ type: FETCH_CHARACTER_SUCCESS, payload: data });
+    yield put({ type: FETCH_CURRENT_CHARACTER_SUCCESS, payload: data });
   } catch (e) {
-    yield put({ type: FETCH_CHARACTER_FAIL });
+    yield put({ type: FETCH_CURRENT_CHARACTER_FAIL });
   }
 }
 
 export function* getCharacterWatcher() {
-  yield takeEvery(FETCH_CHARACTER, getCharacterWorker);
+  yield takeEvery(FETCH_CURRENT_CHARACTER, getCharacterWorker);
 }

@@ -6,6 +6,7 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageContent = styled.div`
+  padding: 0 20px;
   margin: 0 auto;
   max-width: 1440px;
 `;

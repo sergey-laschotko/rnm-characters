@@ -2,9 +2,9 @@ import {
   FETCH_CHARACTERS,
   FETCH_CHARACTERS_SUCCESS,
   FETCH_CHARACTERS_FAIL,
-  FETCH_CHARACTER,
-  FETCH_CHARACTER_SUCCESS,
-  FETCH_CHARACTER_FAIL,
+  FETCH_CURRENT_CHARACTER,
+  FETCH_CURRENT_CHARACTER_SUCCESS,
+  FETCH_CURRENT_CHARACTER_FAIL,
   SET_CURRENT_CHARACTER,
   UNSET_CURRENT_CHARACTER
 } from '../types';
@@ -14,7 +14,9 @@ const INITIAL_STATE = {
   nextPage: null,
   loading: false,
   error: false,
-  currentCharacter: {}
+  currentCharacter: {},
+  loadingCharacter: false,
+  errorCharacter: false,
 };
 
 export const charactersReducer = (state = INITIAL_STATE, action) => {
@@ -39,24 +41,24 @@ export const charactersReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: true
       };
-    case FETCH_CHARACTER:
+    case FETCH_CURRENT_CHARACTER:
       return {
         ...state,
-        loading: true,
-        error: false
+        loadingCharacter: true,
+        errorCharacter: false
       };
-    case FETCH_CHARACTER_SUCCESS:
+    case FETCH_CURRENT_CHARACTER_SUCCESS:
       return {
         ...state,
         currentCharacter: action.payload,
-        loading: false,
-        error: false
+        loadingCharacter: false,
+        errorCharacter: false
       };
-    case FETCH_CHARACTER_FAIL:
+    case FETCH_CURRENT_CHARACTER_FAIL:
       return {
         ...state,
-        loading: false,
-        error: true
+        loadingCharacter: false,
+        errorCharacter: true
       };
     case SET_CURRENT_CHARACTER:
       return {

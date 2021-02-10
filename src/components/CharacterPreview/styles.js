@@ -11,6 +11,7 @@ export const CharacterPreviewContainer = styled.div`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  width: 100%;
 `;
 
 export const CharacterPreviewContent = styled.div`
@@ -35,7 +36,7 @@ export const CharacterImage = styled.img`
 `;
 
 export const CharacterName = styled.div`
-  padding: 20px 10px;
+  padding: 20px;
   width: 50%;
   color: #f5f5f5;
   font-size: 16px;

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { array, func, string, bool } from 'prop-types';
 import { connect } from 'react-redux';
-import InifiniteScroller from 'react-infinite-scroller';
+import InfiniteScroller from 'react-infinite-scroller';
 import { getCharacters } from '../../redux/actions';
 import CharacterPreview from '../../components/CharacterPreview';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
 
 import {
-  Loader,
   StyledList
 } from './styles';
 
@@ -23,19 +24,24 @@ const CharactersList = ({
 
   useEffect(() => {
     loadCharacters();
-  }, [loadCharacters]);
+  }, []);
 
   return (
     <StyledList>
-      <InifiniteScroller
-        element="div"
-        pageStart={0}
-        loadMore={loadMore}
-        hasMore={!!nextPage}
-        loader={<Loader key={0}>Loading...</Loader>}
-      >
-        {characters.map(character => <CharacterPreview key={character.id} character={character} />)}
-      </InifiniteScroller>
+      {!!characters.length && (
+        <InfiniteScroller
+          element="div"
+          pageStart={0}
+          loadMore={loadMore}
+          hasMore={!!nextPage}
+          loader={<Loader key={0} />}
+        >
+          {characters.map(character => <CharacterPreview key={character.id} character={character} />)}
+        </InfiniteScroller>
+      )}
+      {error && (
+        <Error>Something went wrong. Try again later.</Error>
+      )}
     </StyledList>
   );
 };
