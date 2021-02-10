@@ -128,7 +128,7 @@ const CharacterPage = ({
                 Seen in episodes:
               </CharacterSubtext>
               {getEpisodes().map((ep, index, array) => (
-              <Episode>{ep}{index === (array.length - 1) ? '' : ','}</Episode>
+              <Episode key={ep}>{ep}{index === (array.length - 1) ? '' : ','}</Episode>
               ))}
             </CharacterText>
           </Fragment>

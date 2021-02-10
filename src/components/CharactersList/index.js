@@ -23,7 +23,7 @@ const CharactersList = ({
   }
 
   useEffect(() => {
-    loadCharacters();
+    !characters.length && loadCharacters();
   }, []);
 
   return (
