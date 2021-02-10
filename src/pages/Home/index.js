@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
-import { object, func } from 'prop-types';
-import { connect } from 'react-redux';
-import { getCharacters } from '../../redux/actions';
+import React from 'react';
+import CharactersList from '../../components/CharactersList';
 
-const HomePage = ({ charactersData, loadCharacters }) => {
-  useEffect(() => {
-    loadCharacters();
-  }, []);
+import {
+  HomePageContainer,
+  HomePageContent,
+  HomePageTitle
+} from './styles';
 
-  return (
-    <div>HomePage 2</div>
-  );
-};
+const HomePage = ({
+  characters,
+  nextPage,
+  loading,
+  error,
+  loadCharacters
+}) => (
+  <HomePageContainer>
+    <HomePageContent>
+      <HomePageTitle>Characters</HomePageTitle>
+      <CharactersList />
+    </HomePageContent>
+  </HomePageContainer>
+);
 
-HomePage.propTypes = {
-  charactersData: object.isRequired,
-  loadCharacters: func.isRequired
-};
-
-const mapStateToProps = ({ charactersData }) => ({ charactersData });
-
-const mapDispatchToProps = (dispatch) => ({
-  loadCharacters: (page) => dispatch(getCharacters(page))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

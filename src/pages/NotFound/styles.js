@@ -7,6 +7,7 @@ export const NotFoundContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: rgb(36, 40, 47);
 `;
 
 export const Error404 = styled.div`

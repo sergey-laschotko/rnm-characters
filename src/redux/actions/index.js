@@ -1,6 +1,25 @@
-import { FETCH_CHARACTERS } from '../types';
+import {
+  FETCH_CHARACTERS, 
+  FETCH_CHARACTER,
+  SET_CURRENT_CHARACTER,
+  UNSET_CURRENT_CHARACTER
+} from '../types';
 
 export const getCharacters = (payload) => ({
   type: FETCH_CHARACTERS,
   payload
+});
+
+export const getCharacter = (payload) => ({
+  type: FETCH_CHARACTER,
+  payload
+});
+
+export const setCurrentCharacter = (payload) => ({
+  type: SET_CURRENT_CHARACTER,
+  payload
+});
+
+export const unsetCurrentCharacter = () => ({
+  type: UNSET_CURRENT_CHARACTER
 });
